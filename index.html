@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Robot-XZC 星维机器人团队：让技术走出实验室，让机器人进入真实生活。" />
+  <title>Robot-XZC｜星维机器人团队</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1d2026;
+      --muted: #6b7078;
+      --line: #e6e5df;
+      --paper: #f7f7f4;
+      --orange: #c94706;
+      --orange-dark: #9e3005;
+      --sun: #f7c942;
+      --gray: #a6a8aa;
+      --white: #fff;
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--paper);
+      font-family: "Noto Sans SC", "Manrope", sans-serif; line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow { font-family: "DM Mono", monospace; color: var(--orange); letter-spacing: .12em; font-size: .78rem; text-transform: uppercase; }
+    .nav {
+      position: fixed; inset: 0 0 auto; z-index: 20; height: 76px; display: flex; align-items: center;
+      background: rgba(247,247,244,.84); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(230,229,223,.8);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -.03em; }
+    .brand-mark { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; color: #fff; background: var(--orange); font-family: "Manrope"; font-weight: 800; font-size: .78rem; box-shadow: 4px 4px 0 var(--sun); }
+    .brand small { display: block; font: 500 .62rem "DM Mono", monospace; color: var(--muted); letter-spacing: .05em; }
+    .nav-links { display: flex; gap: 28px; font-size: .9rem; color: #464a50; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta { background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 999px; font-size: .82rem; font-weight: 700; }
+    .menu { display: none; border: 0; background: none; font-size: 1.4rem; }
+    .hero { padding: 160px 0 110px; position: relative; overflow: hidden; }
+    .hero:before { content: ""; position: absolute; width: 620px; height: 620px; right: -190px; top: 30px; border-radius: 50%; background: var(--sun); opacity: .42; }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.02fr .98fr; gap: 72px; align-items: center; }
+    h1 { margin: 18px 0 22px; font-size: clamp(3rem, 6.1vw, 6.3rem); letter-spacing: -.07em; line-height: .98; max-width: 720px; }
+    h1 span { color: var(--orange); }
+    .lead { max-width: 560px; color: var(--muted); font-size: 1.1rem; }
+    .hero-actions { display: flex; align-items: center; gap: 14px; margin-top: 34px; }
+    .button { display: inline-flex; align-items: center; gap: 9px; border-radius: 999px; padding: 13px 20px; font-weight: 700; font-size: .9rem; transition: transform .2s ease, box-shadow .2s ease; }
+    .button:hover { transform: translateY(-3px); }
+    .button.primary { color: #fff; background: var(--orange); box-shadow: 6px 6px 0 var(--ink); }
+    .button.ghost { border: 1px solid var(--line); background: #fff; }
+    .logo-card { position: relative; padding: 16px; border-radius: 28px; background: #fff; box-shadow: 18px 18px 0 var(--ink); transform: rotate(2deg); }
+    .logo-card img { display: block; width: 100%; border-radius: 17px; }
+    .logo-tag { position: absolute; left: -26px; bottom: -25px; padding: 13px 16px; background: var(--orange); color: #fff; border-radius: 15px; box-shadow: 6px 6px 0 var(--sun); font: 500 .72rem "DM Mono", monospace; }
+    .ticker { background: var(--ink); color: #fff; overflow: hidden; white-space: nowrap; font: .78rem "DM Mono", monospace; letter-spacing: .08em; }
+    .ticker-track { padding: 12px 0; display: inline-flex; gap: 36px; animation: ticker 24s linear infinite; }
+    .ticker em { color: var(--sun); font-style: normal; }
+    @keyframes ticker { to { transform: translateX(-35%); } }
+    section { padding: 112px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 44px; }
+    h2 { margin: 10px 0 0; max-width: 670px; font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.1; letter-spacing: -.055em; }
+    .section-intro { max-width: 420px; color: var(--muted); }
+    .about { background: #fff; }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; align-items: start; }
+    .about-copy p { color: var(--muted); font-size: 1.04rem; }
+    .quote { margin-top: 30px; border-left: 4px solid var(--orange); padding-left: 20px; font-size: 1.45rem; font-weight: 800; line-height: 1.35; letter-spacing: -.04em; }
+    .stats { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
+    .stat { padding: 26px 18px 22px 0; border-bottom: 1px solid var(--line); }
+    .stat:nth-child(odd) { border-right: 1px solid var(--line); }
+    .stat:nth-child(even) { padding-left: 26px; }
+    .stat b { display: block; font: 800 clamp(2.6rem, 5vw, 4.7rem) "Manrope"; letter-spacing: -.08em; color: var(--orange); line-height: 1; }
+    .stat span { color: var(--muted); font-size: .85rem; }
+    .services { background: var(--ink); color: #fff; }
+    .services .eyebrow { color: var(--sun); }
+    .services .section-intro { color: #a9adb3; }
+    .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .service { min-height: 290px; padding: 24px; background: #282c32; border: 1px solid #393e46; border-radius: var(--radius); display: flex; flex-direction: column; justify-content: space-between; transition: transform .25s ease, background .25s ease; }
+    .service:hover { transform: translateY(-8px); background: var(--orange); border-color: var(--orange); }
+    .service-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; background: var(--sun); color: var(--ink); font-weight: 900; font-family: "Manrope"; }
+    .service h3 { margin: 36px 0 8px; font-size: 1.25rem; letter-spacing: -.035em; }
+    .service p { margin: 0; color: #a9adb3; font-size: .87rem; }
+    .service:hover p { color: #fff; }
+    .projects { background: #f2f0e8; }
+    .project-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: 16px; }
+    .project { min-height: 265px; padding: 30px; border-radius: var(--radius); position: relative; overflow: hidden; }
+    .project.large { background: var(--orange); color: #fff; }
+    .project.dark { background: var(--ink); color: #fff; }
+    .project.light { background: #fff; }
+    .project h3 { margin: 60px 0 10px; font-size: 1.7rem; letter-spacing: -.05em; }
+    .project p { max-width: 420px; margin: 0; color: rgba(255,255,255,.75); font-size: .9rem; }
+    .project.light p { color: var(--muted); }
+    .project-number { position: absolute; top: 26px; right: 28px; font: 500 .78rem "DM Mono"; opacity: .7; }
+    .project:after { content: "↗"; position: absolute; right: 28px; bottom: 20px; font-size: 2.5rem; line-height: 1; opacity: .7; }
+    .project-stack { display: grid; gap: 16px; }
+    .project-stack .project { min-height: 124px; }
+    .project-stack .project h3 { margin: 35px 0 0; font-size: 1.25rem; }
+    .project-stack .project:after { font-size: 1.7rem; }
+    .timeline { background: #fff; }
+    .timeline-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
+    .milestone { padding: 26px 24px 20px 0; border-bottom: 1px solid var(--line); }
+    .milestone + .milestone { padding-left: 24px; border-left: 1px solid var(--line); }
+    .milestone .year { font: 500 .78rem "DM Mono"; color: var(--orange); }
+    .milestone h3 { margin: 30px 0 7px; font-size: 1.15rem; }
+    .milestone p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .contact { background: var(--sun); position: relative; overflow: hidden; }
+    .contact:after { content: "XZC"; position: absolute; right: -35px; bottom: -100px; color: rgba(255,255,255,.55); font: 900 22rem "Manrope"; letter-spacing: -.16em; line-height: 1; }
+    .contact-inner { position: relative; z-index: 1; display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+    .contact h2 { max-width: 650px; }
+    .contact-copy { margin-top: 20px; max-width: 510px; }
+    footer { padding: 28px 0 36px; background: var(--sun); border-top: 1px solid rgba(29,32,38,.15); font-size: .78rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; color: #594b20; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (max-width: 900px) {
+      .nav-links { display: none; position: absolute; left: 24px; right: 24px; top: 70px; background: #fff; padding: 20px; border-radius: 18px; box-shadow: 0 12px 40px rgba(29,32,38,.12); flex-direction: column; gap: 14px; }
+      .nav-links.open { display: flex; }
+      .nav-cta { display: none; }
+      .menu { display: block; }
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero { padding-top: 130px; }
+      .logo-card { width: min(100%, 620px); margin: 0 auto; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-grid { grid-template-columns: 1fr; }
+      .timeline-list { grid-template-columns: 1fr; }
+      .milestone + .milestone { padding-left: 0; border-left: 0; }
+      .contact-inner { display: block; }
+      .contact .button { margin-top: 24px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 32px, 1180px); }
+      section { padding: 80px 0; }
+      .hero { padding-bottom: 80px; }
+      h1 { font-size: 3.4rem; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .button { justify-content: center; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service { min-height: 225px; }
+      .section-head { display: block; }
+      .section-intro { margin-top: 18px; }
+      .footer-inner { display: block; }
+      .footer-inner span { display: block; margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Robot-XZC 首页"><span class="brand-mark">XZC</span><span>Robot-XZC<small>星维机器人团队</small></span></a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#about">关于我们</a><a href="#services">技术服务</a><a href="#projects">项目方向</a><a href="#contact">联系团队</a>
+      </nav>
+      <a class="nav-cta" href="#contact">一起做点酷的 →</a>
+      <button class="menu" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">BUCT · ROBOTICS · XZC</div>
+          <h1>让技术走出<br /><span>实验室</span>，进入生活。</h1>
+          <p class="lead">Robot-XZC 是北京化工大学的机器人与创客团队。我们把机器人开发、智能硬件、3D 打印与电子产品服务连成一条线，做真正有用、有人情味的技术。</p>
+          <div class="hero-actions"><a class="button primary" href="#projects">看看我们在做什么 ↗</a><a class="button ghost" href="#about">认识 Robot-XZC</a></div>
+        </div>
+        <div class="logo-card reveal"><img src="robot-xzc-logo.png" alt="Robot-XZC 团队图标" /><div class="logo-tag">EST. 2020 / BUCT</div></div>
+      </div>
+    </section>
+    <div class="ticker"><div class="ticker-track"><span>ROBOTICS <em>✦</em></span><span>MAKER EDUCATION <em>✦</em></span><span>3D PRINTING <em>✦</em></span><span>SMART HARDWARE <em>✦</em></span><span>ROBOTICS <em>✦</em></span><span>MAKER EDUCATION <em>✦</em></span><span>3D PRINTING <em>✦</em></span></div></div>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="reveal"><div class="eyebrow">01 / 关于我们</div><h2>一支把“会做”变成“能用”的队伍。</h2><div class="quote">做北化万事屋，<br />创造美好生活。</div></div>
+        <div class="about-copy reveal"><p>我们由不同专业、不同组织的同学组成，长期深耕机器人、电子产品维修、3D 打印和创客教育。团队相信，技术的价值不只在于展示，更在于解决一个真实的问题，帮到一个具体的人。</p><p>从校园里的电脑维修和小车底盘，到具身智能、导盲犬与家庭服务机器人，我们在服务与研发两条线上持续迭代，把每一次动手都变成下一次进步。</p><div class="stats"><div class="stat"><b>20000+</b><span>电子产品与技术服务单量</span></div><div class="stat"><b>100+</b><span>公益培训与技术课程场次</span></div><div class="stat"><b>160+</b><span>3D 打印服务人次</span></div><div class="stat"><b>5+</b><span>年机器人项目经验</span></div></div></div>
+      </div>
+    </section>
+
+    <section class="services" id="services"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">02 / 技术服务</div><h2>从一个想法，到一台能工作的机器。</h2></div><p class="section-intro">面向同学、学校与企业提供技术咨询、原型制作和定制开发，让复杂的技术变得可理解、可验证、可交付。</p></div><div class="service-grid">
+      <article class="service reveal"><div class="service-icon">01</div><div><h3>机器人开发</h3><p>ROS、人机交互、底盘设计、视觉感知与运动控制，做从模块到整机的研发。</p></div></article>
+      <article class="service reveal"><div class="service-icon">02</div><div><h3>智能硬件</h3><p>Arduino / STM32、PCB 设计与贴片、NFC 和嵌入式系统，把电路变成产品。</p></div></article>
+      <article class="service reveal"><div class="service-icon">03</div><div><h3>3D 打印与建模</h3><p>SolidWorks 建模、切片与快速原型，支持 FDM、光固化等多种打印工艺。</p></div></article>
+      <article class="service reveal"><div class="service-icon">04</div><div><h3>维修与培训</h3><p>手机电脑维修、系统优化与技术培训，把经验整理出来，和更多人分享。</p></div></article>
+    </div></div></section>
+
+    <section class="projects" id="projects"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">03 / 项目方向</div><h2>我们正在把未来，拆成今天能完成的任务。</h2></div><p class="section-intro">从校园真实需求出发，保持工程实践，也保持对新技术的好奇。</p></div><div class="project-grid">
+      <article class="project large reveal"><span class="project-number">PROJECT 01</span><h3>GuideBot AI 智能导盲犬</h3><p>以四足机器人为载体，融合视觉、深度与定位信息，探索实时感知、避障、导航和语音交互的闭环，让视障出行更独立、更安全。</p></article>
+      <div class="project-stack"><article class="project dark reveal"><span class="project-number">PROJECT 02</span><h3>具身智能与家庭服务机器人</h3></article><article class="project light reveal"><span class="project-number">PROJECT 03</span><h3>大模型 × PCB 智能工程</h3><p>从需求到原理图、布局和 BOM 的自动化协同。</p></article></div>
+    </div></div></section>
+
+    <section class="timeline"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">04 / 我们走过的路</div><h2>每一次服务，都是一次真实的迭代。</h2></div><p class="section-intro">我们参加、主办并见证了许多从校园出发的技术实践，让作品经得起使用，也经得起时间。</p></div><div class="timeline-list"><article class="milestone reveal"><span class="year">2020 — NOW</span><h3>从电子产品服务出发</h3><p>建立校园服务生态，提供维修、打印、软硬件咨询，累计服务超过 20000 单。</p></article><article class="milestone reveal"><span class="year">2023 — 2025</span><h3>把机器人带进更多现场</h3><p>承办足球机器人、格斗机器人等赛事，参与多场具身智能黑客松和学校重要项目。</p></article><article class="milestone reveal"><span class="year">NEXT CHAPTER</span><h3>面向真实场景持续验证</h3><p>从能演示走向可持续使用，探索导盲、家庭服务与定制化开发的新产品方向。</p></article></div></div></section>
+
+    <section class="contact" id="contact"><div class="wrap contact-inner"><div class="reveal"><div class="eyebrow">05 / 联系团队</div><h2>有一个想法？<br />来和我们一起把它做出来。</h2><p class="contact-copy">无论是机器人项目、智能硬件、3D 打印，还是校园里的一个小问题，都欢迎来找 Robot-XZC 聊聊。</p></div><a class="button primary reveal" href="mailto:thmos.tree@gmail.com">发送合作邮件 ↗</a></div></section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>© 2026 Robot-XZC / 北京化工大学<br />创始人：陈树帆</span><span>技术服务 · 创客教育 · 机器人研发</span></div></footer>
+  <script>
+    const menu = document.querySelector('.menu');
+    const nav = document.querySelector('.nav-links');
+    menu?.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', open); });
+    nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); }));
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
